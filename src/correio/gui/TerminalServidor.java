@@ -5,17 +5,58 @@
  */
 package correio.gui;
 
+import correio.core.ServidorDeMensagens;
+import correio.core.ServidorListener;
+import correio.core.Usuario;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author filipe
  */
 public class TerminalServidor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TerminalServidor
-     */
-    public TerminalServidor() {
+    private class RegistroDeUsuarioPanel extends JPanel {
+        private JButton botaoRemover;
+        private JLabel labelInfo;
+        private String info;
+
+        public RegistroDeUsuarioPanel(String username, int unreadMessages) {
+            info = "Usuário: " + username + " Mensagens não lidas: " + unreadMessages;
+            botaoRemover = new JButton("Remover");
+            botaoRemover.addActionListener((ActionEvent e) -> {
+                servidor.removerUsuario(username);
+            });
+            
+            labelInfo = new JLabel(info);
+            setLayout(new FlowLayout());
+            add(botaoRemover);
+            add(labelInfo);
+            pack();
+        }
+    }
+    
+    private ServidorDeMensagens servidor;
+    
+    public TerminalServidor(String hostname) {
         initComponents();
+        iniciarServidor(hostname);
+    }
+    
+    private void iniciarServidor(String hostname) {
+        servidor = new ServidorDeMensagens(hostname);
+        servidor.addServidorListener(() -> {
+            carregarUsuarios();
+        });
+    }
+    
+    private void carregarUsuarios() {
+        
     }
 
     /**
@@ -33,11 +74,11 @@ public class TerminalServidor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 395, Short.MAX_VALUE)
         );
 
         pack();
@@ -73,7 +114,7 @@ public class TerminalServidor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TerminalServidor().setVisible(true);
+                new TerminalServidor("127.0.0.1").setVisible(true);
             }
         });
     }

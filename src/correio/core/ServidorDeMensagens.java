@@ -6,6 +6,9 @@
 package correio.core;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -13,12 +16,33 @@ import java.util.TreeMap;
  *
  * @author filipe
  */
-public class Servidor implements Correio {
+public class ServidorDeMensagens implements Correio {
 
     private Map<String, Usuario> usuarios;
+    private List<ServidorListener> listeners;
 
-    public Servidor() {
+    public ServidorDeMensagens(String hostname) {
         usuarios = new TreeMap<>();
+        listeners = new ArrayList<>();
+    }
+
+    public void addServidorListener(ServidorListener listener) {
+        listeners.add(listener);
+    }
+    
+    private void notificarListeners() {
+        for (ServidorListener listener : listeners) {
+            listener.mudancaOcorrida();
+        }
+    }
+    
+    public boolean removerUsuario(String username) {
+        if (usuarios.containsKey(username)) {
+            usuarios.remove(username);
+            notificarListeners();
+            return true;
+        }
+        return false;
     }
 
     private Usuario autenticar(String userName, String senha) {
@@ -36,6 +60,7 @@ public class Servidor implements Correio {
         if (u != null) {
             if (!usuarios.containsKey(u.getUserName())) {
                 usuarios.put(u.getUserName(), u);
+                notificarListeners();
                 return true;
             }
         }
@@ -46,7 +71,9 @@ public class Servidor implements Correio {
     public Mensagem getMensagem(String userName, String senha) throws RemoteException {
         Usuario usuario = autenticar(userName, senha);
         if (usuario != null) {
-            return usuario.getMensagem();
+            Mensagem mensagem = usuario.getMensagem();
+            notificarListeners();
+            return mensagem;
         }
         return null;
     }
@@ -66,6 +93,7 @@ public class Servidor implements Correio {
         if (usuario != null) {
             if (usuarios.containsKey(userNameDestinatario)) {
                 usuarios.get(userNameDestinatario).putMensagem(m);
+                notificarListeners();
                 return true;
             }
         }
@@ -79,6 +107,10 @@ public class Servidor implements Correio {
             return usuario;
         }
         return null;
+    }
+    
+    public List<Usuario> getUsuarios() {
+        return usuarios.values();
     }
 
 }

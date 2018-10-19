@@ -21,10 +21,7 @@ public class TelaLogin extends javax.swing.JDialog {
 
     private String hostname;
     private Usuario usuario;
-    
-    /**
-     * Creates new form TelaLogin
-     */
+
     public TelaLogin(java.awt.Frame parent, String hostname, boolean modal) {
         super(parent, modal);
         this.hostname = hostname;
@@ -40,13 +37,23 @@ public class TelaLogin extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        textUser = new javax.swing.JTextField();
-        textPass = new javax.swing.JPasswordField();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panelLogin = new javax.swing.JPanel();
+        labelCorreio1 = new javax.swing.JLabel();
+        labelUsername1 = new javax.swing.JLabel();
+        labelSenha1 = new javax.swing.JLabel();
+        textUserLogin = new javax.swing.JTextField();
+        textPassLogin = new javax.swing.JPasswordField();
         botaoOk = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        labelCorreio2 = new javax.swing.JLabel();
+        labelUsername2 = new javax.swing.JLabel();
+        textUserRegistrar = new javax.swing.JTextField();
+        labelSenha2 = new javax.swing.JLabel();
+        textPassRegistrar = new javax.swing.JPasswordField();
+        labelSenha3 = new javax.swing.JLabel();
+        textConfirmarRegistrar = new javax.swing.JPasswordField();
+        botaoRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -56,20 +63,76 @@ public class TelaLogin extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelCorreio1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelCorreio1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCorreio1.setText("CORREIO");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CORREIO");
+        labelUsername1.setText("Username:");
 
-        jLabel2.setText("Username:");
+        labelSenha1.setText("Senha:");
 
-        jLabel3.setText("Senha:");
-
+        botaoOk.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botaoOk.setText("TALQUEI");
         botaoOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoOkActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
+        panelLogin.setLayout(panelLoginLayout);
+        panelLoginLayout.setHorizontalGroup(
+            panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCorreio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelUsername1)
+                            .addComponent(labelSenha1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textUserLogin)
+                            .addComponent(textPassLogin))))
+                .addContainerGap())
+        );
+        panelLoginLayout.setVerticalGroup(
+            panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCorreio1)
+                .addGap(18, 18, 18)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelUsername1)
+                    .addComponent(textUserLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSenha1)
+                    .addComponent(textPassLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Login", panelLogin);
+
+        labelCorreio2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        labelCorreio2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCorreio2.setText("CORREIO");
+
+        labelUsername2.setText("Username:");
+
+        labelSenha2.setText("Senha:");
+
+        labelSenha3.setText("Confirmar:");
+
+        botaoRegistrar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botaoRegistrar.setText("REGISTRAR");
+        botaoRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRegistrarActionPerformed(evt);
             }
         });
 
@@ -80,35 +143,43 @@ public class TelaLogin extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                    .addComponent(botaoRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCorreio2, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(labelUsername2)
+                            .addComponent(labelSenha2)
+                            .addComponent(labelSenha3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textUser)
-                            .addComponent(textPass))))
+                            .addComponent(textConfirmarRegistrar)
+                            .addComponent(textUserRegistrar)
+                            .addComponent(textPassRegistrar))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(labelCorreio2)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelUsername2)
+                    .addComponent(textUserRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(textPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addComponent(botaoOk, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSenha2)
+                    .addComponent(textPassRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSenha3)
+                    .addComponent(textConfirmarRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(botaoRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jTabbedPane1.addTab("Registrar", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,37 +187,63 @@ public class TelaLogin extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     @SuppressWarnings("deprecated")
     private void botaoOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOkActionPerformed
-        String user = textUser.getText();
-        String pass = textPass.getText();
+        String user = textUserLogin.getText();
+        String pass = textPassLogin.getText();
         Correio servidorDeCorreio = RMIUtils.getStub(hostname);
         try {
             usuario = servidorDeCorreio.login(user, pass);
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
                     "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_botaoOkActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         usuario = null;
     }//GEN-LAST:event_formWindowClosing
+
+    private void botaoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistrarActionPerformed
+        String user = textUserRegistrar.getText();
+        String pass = textPassRegistrar.getText();
+        String confPass = textConfirmarRegistrar.getText();
+        Correio servidorDeCorreio = RMIUtils.getStub(hostname);
+        if (!pass.equals(confPass)) {
+            JOptionPane.showMessageDialog(null, "Escreve direito a senha aí men",
+                    "opora kkkkk", JOptionPane.ERROR_MESSAGE);
+        } else if (user.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "Nome de usuário nem pode ter espaço, fera.",
+                    "opora kkkkk", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                servidorDeCorreio.cadastrarUsuario(new Usuario(user, pass));
+            } catch (RemoteException ex) {
+                JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
+                        "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botaoRegistrarActionPerformed
+
+    public static Usuario getUsuarioFromLogin(String hostname) {
+        TelaLogin login = new TelaLogin(null, hostname, true);
+        login.setVisible(true);
+        return login.usuario;
+    }
 
     /**
      * @param args the command line arguments
@@ -192,11 +289,21 @@ public class TelaLogin extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoOk;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton botaoRegistrar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField textPass;
-    private javax.swing.JTextField textUser;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel labelCorreio1;
+    private javax.swing.JLabel labelCorreio2;
+    private javax.swing.JLabel labelSenha1;
+    private javax.swing.JLabel labelSenha2;
+    private javax.swing.JLabel labelSenha3;
+    private javax.swing.JLabel labelUsername1;
+    private javax.swing.JLabel labelUsername2;
+    private javax.swing.JPanel panelLogin;
+    private javax.swing.JPasswordField textConfirmarRegistrar;
+    private javax.swing.JPasswordField textPassLogin;
+    private javax.swing.JPasswordField textPassRegistrar;
+    private javax.swing.JTextField textUserLogin;
+    private javax.swing.JTextField textUserRegistrar;
     // End of variables declaration//GEN-END:variables
 }
