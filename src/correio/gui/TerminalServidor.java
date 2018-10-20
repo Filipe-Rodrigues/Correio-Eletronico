@@ -8,9 +8,13 @@ package correio.gui;
 import correio.core.ServidorDeMensagens;
 import correio.core.ServidorListener;
 import correio.core.Usuario;
+import correio.utils.RMIUtils;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,7 +31,7 @@ public class TerminalServidor extends javax.swing.JFrame {
         private String info;
 
         public RegistroDeUsuarioPanel(String username, int unreadMessages) {
-            info = "Usuário: " + username + " Mensagens não lidas: " + unreadMessages;
+            info = "Usuário: " + username + " | Mensagens não lidas: " + unreadMessages;
             botaoRemover = new JButton("Remover");
             botaoRemover.addActionListener((ActionEvent e) -> {
                 servidor.removerUsuario(username);
@@ -46,6 +50,12 @@ public class TerminalServidor extends javax.swing.JFrame {
     public TerminalServidor(String hostname) {
         initComponents();
         iniciarServidor(hostname);
+        setLocationRelativeTo(null);
+        corrigirTamanhoJanela();
+    }
+    
+    private void corrigirTamanhoJanela() {
+        setSize(400, 600);
     }
     
     private void iniciarServidor(String hostname) {
@@ -53,10 +63,19 @@ public class TerminalServidor extends javax.swing.JFrame {
         servidor.addServidorListener(() -> {
             carregarUsuarios();
         });
+        RMIUtils.registrarServicoRMI(servidor, hostname);
     }
     
     private void carregarUsuarios() {
-        
+        List<Usuario> usuarios = servidor.getUsuarios();
+        painelUsers.removeAll();
+        for (Usuario usuario : usuarios) {
+            RegistroDeUsuarioPanel panel = new RegistroDeUsuarioPanel(usuario.getUserName(), usuario.getQtdMensagens());
+            painelUsers.add(panel);
+        }
+        revalidate();
+        repaint();
+        corrigirTamanhoJanela();
     }
 
     /**
@@ -68,17 +87,29 @@ public class TerminalServidor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        painelUsers = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        painelUsers.setLayout(new javax.swing.BoxLayout(painelUsers, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(painelUsers);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -120,5 +151,7 @@ public class TerminalServidor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel painelUsers;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 public interface Correio extends Remote {
 
+    // Insere um novo usuário no sistema
     boolean cadastrarUsuario(Usuario u) throws RemoteException;
 
     // Recupera a primeira mensagem na lista de mensagens do usuario; a mensagem deve ser removida
@@ -17,6 +18,7 @@ public interface Correio extends Remote {
 
     // Exigir autenticação do usuário (senha do remetente, incluído como atributo da mensagem)
     boolean sendMensagem(String userName, String senha, Mensagem m, String userNameDestinatario) throws RemoteException;
-    
-    Usuario login(String userName, String senha) throws RemoteException;
+
+    // Verifica o registro do usuário
+    boolean login(String userName, String senha) throws RemoteException;
 }

@@ -42,6 +42,7 @@ public class RMIUtils {
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, "Erro no servidor! Vai da não pai :(",
                     "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
 }

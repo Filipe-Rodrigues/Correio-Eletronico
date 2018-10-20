@@ -9,8 +9,8 @@ import correio.core.Correio;
 import correio.core.Usuario;
 import correio.utils.RMIUtils;
 import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,12 +20,13 @@ import javax.swing.JOptionPane;
 public class TelaLogin extends javax.swing.JDialog {
 
     private String hostname;
-    private Usuario usuario;
+    private Map<String, String> usuario;
 
     public TelaLogin(java.awt.Frame parent, String hostname, boolean modal) {
         super(parent, modal);
         this.hostname = hostname;
         initComponents();
+        setLocationRelativeTo(parent);
     }
 
     /**
@@ -37,7 +38,7 @@ public class TelaLogin extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        painelDeAbas = new javax.swing.JTabbedPane();
         panelLogin = new javax.swing.JPanel();
         labelCorreio1 = new javax.swing.JLabel();
         labelUsername1 = new javax.swing.JLabel();
@@ -45,7 +46,7 @@ public class TelaLogin extends javax.swing.JDialog {
         textUserLogin = new javax.swing.JTextField();
         textPassLogin = new javax.swing.JPasswordField();
         botaoOk = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        painelRegistro = new javax.swing.JPanel();
         labelCorreio2 = new javax.swing.JLabel();
         labelUsername2 = new javax.swing.JLabel();
         textUserRegistrar = new javax.swing.JTextField();
@@ -116,7 +117,7 @@ public class TelaLogin extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Login", panelLogin);
+        painelDeAbas.addTab("Login", panelLogin);
 
         labelCorreio2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         labelCorreio2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,42 +137,42 @@ public class TelaLogin extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelRegistroLayout = new javax.swing.GroupLayout(painelRegistro);
+        painelRegistro.setLayout(painelRegistroLayout);
+        painelRegistroLayout.setHorizontalGroup(
+            painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelRegistroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelCorreio2, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelRegistroLayout.createSequentialGroup()
+                        .addGroup(painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelUsername2)
                             .addComponent(labelSenha2)
                             .addComponent(labelSenha3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(textConfirmarRegistrar)
                             .addComponent(textUserRegistrar)
                             .addComponent(textPassRegistrar))))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        painelRegistroLayout.setVerticalGroup(
+            painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelRegistroLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelCorreio2)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelUsername2)
                     .addComponent(textUserRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSenha2)
                     .addComponent(textPassRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSenha3)
                     .addComponent(textConfirmarRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
@@ -179,7 +180,7 @@ public class TelaLogin extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Registrar", jPanel1);
+        painelDeAbas.addTab("Registrar", painelRegistro);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,14 +188,14 @@ public class TelaLogin extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(painelDeAbas)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(painelDeAbas)
                 .addContainerGap())
         );
 
@@ -206,11 +207,25 @@ public class TelaLogin extends javax.swing.JDialog {
         String user = textUserLogin.getText();
         String pass = textPassLogin.getText();
         Correio servidorDeCorreio = RMIUtils.getStub(hostname);
-        try {
-            usuario = servidorDeCorreio.login(user, pass);
-        } catch (RemoteException ex) {
-            JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
-                    "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
+        if (user.trim().equals("") || pass.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Logins normalmente precisam de usuário e senha, fera.",
+                    "ó as idéia kkkkk", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                boolean logou = servidorDeCorreio.login(user, pass);
+                if (!logou) {
+                    JOptionPane.showMessageDialog(null, "Tem um trem errado aí auhauaha",
+                            "Oxe", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    usuario = new HashMap<>();
+                    usuario.put("user", user);
+                    usuario.put("pass", pass);
+                    dispose();
+                }
+            } catch (RemoteException ex) {
+                JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
+                        "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_botaoOkActionPerformed
 
@@ -223,15 +238,28 @@ public class TelaLogin extends javax.swing.JDialog {
         String pass = textPassRegistrar.getText();
         String confPass = textConfirmarRegistrar.getText();
         Correio servidorDeCorreio = RMIUtils.getStub(hostname);
-        if (!pass.equals(confPass)) {
-            JOptionPane.showMessageDialog(null, "Escreve direito a senha aí men",
-                    "opora kkkkk", JOptionPane.ERROR_MESSAGE);
+        if (user.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Bota um nome aí pa nois pelo menos opora",
+                    "ó as idéia kkkkk", JOptionPane.WARNING_MESSAGE);
         } else if (user.contains(" ")) {
             JOptionPane.showMessageDialog(null, "Nome de usuário nem pode ter espaço, fera.",
-                    "opora kkkkk", JOptionPane.ERROR_MESSAGE);
+                    "opora kkkkk", JOptionPane.WARNING_MESSAGE);
+        } else if (!pass.equals(confPass) || pass.trim().equals("") || confPass.trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Escreve direito a senha aí men",
+                    "opora kkkkk", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                servidorDeCorreio.cadastrarUsuario(new Usuario(user, pass));
+                if (servidorDeCorreio.cadastrarUsuario(new Usuario(user, pass))) {
+                    JOptionPane.showMessageDialog(null, "Novo usuário registrado!",
+                            "Aí é sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    textUserRegistrar.setText("");
+                    textPassRegistrar.setText("");
+                    textConfirmarRegistrar.setText("");
+                    painelDeAbas.setSelectedIndex(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Já tem neguim com esse nome auhaua",
+                            "Oxe", JOptionPane.WARNING_MESSAGE);
+                }
             } catch (RemoteException ex) {
                 JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
                         "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
@@ -239,7 +267,7 @@ public class TelaLogin extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_botaoRegistrarActionPerformed
 
-    public static Usuario getUsuarioFromLogin(String hostname) {
+    public static Map<String, String> getUsuarioFromLogin(String hostname) {
         TelaLogin login = new TelaLogin(null, hostname, true);
         login.setVisible(true);
         return login.usuario;
@@ -290,8 +318,6 @@ public class TelaLogin extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoOk;
     private javax.swing.JButton botaoRegistrar;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelCorreio1;
     private javax.swing.JLabel labelCorreio2;
     private javax.swing.JLabel labelSenha1;
@@ -299,6 +325,8 @@ public class TelaLogin extends javax.swing.JDialog {
     private javax.swing.JLabel labelSenha3;
     private javax.swing.JLabel labelUsername1;
     private javax.swing.JLabel labelUsername2;
+    private javax.swing.JTabbedPane painelDeAbas;
+    private javax.swing.JPanel painelRegistro;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPasswordField textConfirmarRegistrar;
     private javax.swing.JPasswordField textPassLogin;

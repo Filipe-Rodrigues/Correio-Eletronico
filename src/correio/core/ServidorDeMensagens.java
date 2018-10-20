@@ -8,6 +8,7 @@ package correio.core;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -95,22 +96,24 @@ public class ServidorDeMensagens implements Correio {
                 usuarios.get(userNameDestinatario).putMensagem(m);
                 notificarListeners();
                 return true;
+            } else {
+                Mensagem erro = new Mensagem("Sistema do servidor - noreply", "Falha de envio", 
+                        "O usuário \"" + userNameDestinatario + "\" não existe em nosso sistema!", new Date());
+                usuarios.get(userName).putMensagem(erro);
+                notificarListeners();
             }
         }
         return false;
     }
 
     @Override
-    public Usuario login(String userName, String senha) {
+    public boolean login(String userName, String senha) {
         Usuario usuario = autenticar(userName, senha);
-        if (usuario != null) {
-            return usuario;
-        }
-        return null;
+        return usuario != null;
     }
     
     public List<Usuario> getUsuarios() {
-        return usuarios.values();
+        return Collections.unmodifiableList(new ArrayList<>(usuarios.values()));
     }
 
 }
