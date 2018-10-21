@@ -5,6 +5,7 @@
  */
 package correio.core;
 
+import correio.utils.TestingUtils;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +26,16 @@ public class ServidorDeMensagens implements Correio {
     public ServidorDeMensagens(String hostname) {
         usuarios = new TreeMap<>();
         listeners = new ArrayList<>();
+        loadTemplateUsers();
+    }
+    
+    private void loadTemplateUsers() {
+        Map<String, String> defaultUsers = TestingUtils.loadTemplateUsersFromFile();
+        if (defaultUsers != null) {
+            for (Map.Entry<String, String> mapEntry : defaultUsers.entrySet()) {
+                usuarios.put(mapEntry.getKey(), new Usuario(mapEntry.getKey(), mapEntry.getValue()));
+            }
+        }
     }
 
     public void addServidorListener(ServidorListener listener) {
