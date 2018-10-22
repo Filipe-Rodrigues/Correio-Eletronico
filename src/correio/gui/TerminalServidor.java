@@ -55,7 +55,7 @@ public class TerminalServidor extends javax.swing.JFrame {
     }
     
     private void iniciarServidor(String hostname) {
-        servidor = new ServidorDeMensagens(hostname);
+        servidor = new ServidorDeMensagens();
         servidor.addServidorListener(() -> {
             carregarUsuarios();
         });

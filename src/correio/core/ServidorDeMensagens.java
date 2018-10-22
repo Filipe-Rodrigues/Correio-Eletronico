@@ -23,7 +23,7 @@ public class ServidorDeMensagens implements Correio {
     private Map<String, Usuario> usuarios;
     private List<ServidorListener> listeners;
 
-    public ServidorDeMensagens(String hostname) {
+    public ServidorDeMensagens() {
         usuarios = new TreeMap<>();
         listeners = new ArrayList<>();
         loadTemplateUsers();

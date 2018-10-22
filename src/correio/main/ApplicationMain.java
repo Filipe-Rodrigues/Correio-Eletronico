@@ -11,7 +11,6 @@ public class ApplicationMain {
     public static void main(String[] args) {
         try {
             String hostname = (args.length == 0) ? ("127.0.0.1") : (args[0]);
-            System.err.println("ENDEREÇO: " + hostname);
             int option = JOptionPane.showOptionDialog(null, "Vai executar como cliente ou servidor?", "Correio",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Cliente", "Servidor"}, null);
             if (option == 0) {

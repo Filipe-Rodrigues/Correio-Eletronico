@@ -11,7 +11,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
@@ -22,6 +21,7 @@ import javax.swing.JOptionPane;
 public class RMIUtils {
     public static Correio getStub(String hostname) {
         try {
+            System.setProperty("java.rmi.server.hostname", hostname);
             Registry registro = LocateRegistry.getRegistry(hostname);
             return (Correio) registro.lookup("Correio");
         } catch (RemoteException ex) {

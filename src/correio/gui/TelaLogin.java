@@ -25,7 +25,6 @@ public class TelaLogin extends javax.swing.JDialog {
     public TelaLogin(java.awt.Frame parent, String hostname, boolean modal) {
         super(parent, modal);
         this.hostname = hostname;
-        System.err.println("HOSTNAME DO LOGIN: " + hostname);
         initComponents();
         setLocationRelativeTo(parent);
     }
@@ -227,7 +226,6 @@ public class TelaLogin extends javax.swing.JDialog {
             } catch (RemoteException ex) {
                 JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
                         "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_botaoOkActionPerformed
@@ -266,7 +264,6 @@ public class TelaLogin extends javax.swing.JDialog {
             } catch (RemoteException ex) {
                 JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
                         "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_botaoRegistrarActionPerformed
