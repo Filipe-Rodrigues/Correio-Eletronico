@@ -265,6 +265,7 @@ public class TelaLogin extends javax.swing.JDialog {
             } catch (RemoteException ex) {
                 JOptionPane.showMessageDialog(null, "UÉ, o servidor deu pala auahuahau",
                         "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
             }
         }
     }//GEN-LAST:event_botaoRegistrarActionPerformed
