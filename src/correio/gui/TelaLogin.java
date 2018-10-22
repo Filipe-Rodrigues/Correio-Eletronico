@@ -25,6 +25,7 @@ public class TelaLogin extends javax.swing.JDialog {
     public TelaLogin(java.awt.Frame parent, String hostname, boolean modal) {
         super(parent, modal);
         this.hostname = hostname;
+        System.err.println("HOSTNAME DO LOGIN: " + hostname);
         initComponents();
         setLocationRelativeTo(parent);
     }
