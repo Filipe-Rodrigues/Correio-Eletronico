@@ -23,6 +23,7 @@ public class RMIUtils {
         try {
             System.setProperty("java.rmi.server.hostname", hostname);
             Registry registro = LocateRegistry.getRegistry(hostname);
+            System.err.println(registro);
             return (Correio) registro.lookup("Correio");
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, "Erro no cliente! Servidor não encontrado :(",
@@ -36,9 +37,12 @@ public class RMIUtils {
     
     public static void registrarServicoRMI(Correio servico, String hostname) {
         try {
+            System.setProperty("java.rmi.server.hostname", hostname);
+            System.out.println(System.getProperty("java.rmi.server.hostname"));
             Correio stub = (Correio) UnicastRemoteObject.exportObject(servico, 5001);
             Registry registry = LocateRegistry.getRegistry();
             registry.rebind("Correio", stub);
+            System.err.println(registry);
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, "Erro no servidor! Vai da não pai :(",
                     "Que merda kkkk", JOptionPane.ERROR_MESSAGE);
